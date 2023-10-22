@@ -22,7 +22,9 @@ varMaleNPercent <- (varMaleN / varTotalN) * 100
 
 # Calculate and assign variables for the total section
 varTotalAgeMean <- mean(help_miss$age, na.rm = TRUE)
+varTotalAgeSD <- sd(help_miss$age, na.rm = TRUE)
 varTotalAgeMedian <- median(help_miss$age, na.rm = TRUE)
+varTotalAgeIQR <- quantile(help_miss$age, c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Race group
 varTotalBlackN <- sum(help_miss$racegrp == "black", na.rm = TRUE)
@@ -41,15 +43,21 @@ varTotalHomelessNPercent <- (varTotalHomelessN / nrow(help_miss)) * 100
 
 # Calculate and assign variables for the Number of hospitalizations section
 varTotalHospitalizationsMean <- mean(help_miss$d1, na.rm = TRUE)
+varTotalHospitalizationsSD <- sd(help_miss$d1, na.rm = TRUE)
 varTotalHospitalizationsMedian <- median(help_miss$d1, na.rm = TRUE)
+varTotalHospitalizationsIQR <- quantile(help_miss$d1, c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Number of times entered a detox programme section
 varTotalDetoxTimesMean <- mean(help_miss$e2b, na.rm = TRUE)
+varTotalDetoxTimesSD <- sd(help_miss$e2b, na.rm = TRUE)
 varTotalDetoxTimesMedian <- median(help_miss$e2b, na.rm = TRUE)
+varTotalDetoxTimesIQR <- quantile(help_miss$e2b, c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Average number of drinks consumed per day section
 varTotalDrinksPerDayMean <- mean(help_miss$i1, na.rm = TRUE)
+varTotalDrinksPerDaySD <- sd(help_miss$i1, na.rm = TRUE)
 varTotalDrinksPerDayMedian <- median(help_miss$i1, na.rm = TRUE)
+varTotalDrinksPerDayIQR <- quantile(help_miss$i1, c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Alcohol section
 varTotalAlcoholN <- sum(help_miss$substance == "alcohol", na.rm = TRUE)
@@ -69,25 +77,35 @@ varTotalSubstanceAbusePercent <- (varTotalSubstanceAbuse / nrow(help_miss)) * 10
 
 # Calculate and assign variables for the Time to first substance abuse post-detox section
 varTotalTimeToSubstanceAbuseMean <- mean(help_miss$daysanysub, na.rm = TRUE)
+varTotalTimeToSubstanceAbuseSD <- sd(help_miss$daysanysub, na.rm = TRUE)
 varTotalTimeToSubstanceAbuseMedian <- median(help_miss$daysanysub, na.rm = TRUE)
+varTotalTimeToSubstanceAbuseIQR <- quantile(help_miss$daysanysub, c(0.25, 0.75), na.rm = TRUE)
 
 # Print the calculated variables for the total section
 cat("Total section:\n")
-cat("Age, years - Mean:", varTotalAgeMean, " Median:", varTotalAgeMedian, "\n")
+cat("Total Count:", varTotalN, "\n")
+cat("Total Percentage:", varTotalNPercent, "\n")
+cat("Female Count:", varFemaleN, "\n")
+cat("Female Percentage:", varFemaleNPercent, "\n")
+cat("Male Count:", varMaleN, "\n")
+cat("Male Percentage:", varMaleNPercent, "\n")
+cat("Age, years - Mean:", varTotalAgeMean, " (SD:", varTotalAgeSD, ") Median:", varTotalAgeMedian, " (IQR:", varTotalAgeIQR[1], "-", varTotalAgeIQR[2], ")\n")
 cat("Race group - Black N:", varTotalBlackN, " (", varTotalBlackNPercent, "%), Hispanic N:", varTotalHispanicN, " (", varTotalHispanicNPercent, "%), Other N:", varTotalOtherN, " (", varTotalOtherNPercent, "%), White N:", varTotalWhiteN, " (", varTotalWhiteNPercent, "%)\n")
 cat("Homeless - Homeless N:", varTotalHomelessN, " (", varTotalHomelessNPercent, "%)\n")
-cat("Number of hospitalizations for medical problems in their lifetime - Mean:", varTotalHospitalizationsMean, " Median:", varTotalHospitalizationsMedian, "\n")
-cat("Number of times entered a detox programme in the past 6 months - Mean:", varTotalDetoxTimesMean, " Median:", varTotalDetoxTimesMedian, "\n")
-cat("Average number of drinks consumed per day in the past 30 days - Mean:", varTotalDrinksPerDayMean, " Median:", varTotalDrinksPerDayMedian, "\n")
+cat("Number of hospitalizations for medical problems in their lifetime - Mean:", varTotalHospitalizationsMean, " (SD:", varTotalHospitalizationsSD, ") Median:", varTotalHospitalizationsMedian, " (IQR:", varTotalHospitalizationsIQR[1], "-", varTotalHospitalizationsIQR[2], ")\n")
+cat("Number of times entered a detox programme in the past 6 months - Mean:", varTotalDetoxTimesMean, " (SD:", varTotalDetoxTimesSD, ") Median:", varTotalDetoxTimesMedian, " (IQR:", varTotalDetoxTimesIQR[1], "-", varTotalDetoxTimesIQR[2], ")\n")
+cat("Average number of drinks consumed per day in the past 30 days - Mean:", varTotalDrinksPerDayMean, " (SD:", varTotalDrinksPerDaySD, ") Median:", varTotalDrinksPerDayMedian, " (IQR:", varTotalDrinksPerDayIQR[1], "-", varTotalDrinksPerDayIQR[2], ")\n")
 cat("Alcohol N:", varTotalAlcoholN, " (", varTotalAlcoholNPercent, "%)\n")
 cat("Cocaine N:", varTotalCocaineN, " (", varTotalCocaineNPercent, "%)\n")
 cat("Heroin N:", varTotalHeroinN, " (", varTotalHeroinNPercent, "%)\n")
 cat("Any substance abuse post-detox - N:", varTotalSubstanceAbuse, " (", varTotalSubstanceAbusePercent, "%)\n")
-cat("Time to first substance abuse post-detox, days - Mean:", varTotalTimeToSubstanceAbuseMean, " Median:", varTotalTimeToSubstanceAbuseMedian, "\n")
+cat("Time to first substance abuse post-detox, days - Mean:", varTotalTimeToSubstanceAbuseMean, " (SD:", varTotalTimeToSubstanceAbuseSD, ") Median:", varTotalTimeToSubstanceAbuseMedian, " (IQR:", varTotalTimeToSubstanceAbuseIQR[1], "-", varTotalTimeToSubstanceAbuseIQR[2], ")\n")
 
 # Calculate and assign variables for the female section
 varFemaleAgeMean <- mean(help_miss$age[help_miss$female == 1], na.rm = TRUE)
+varFemaleAgeSD <- sd(help_miss$age[help_miss$female == 1], na.rm = TRUE)
 varFemaleAgeMedian <- median(help_miss$age[help_miss$female == 1], na.rm = TRUE)
+varFemaleAgeIQR <- quantile(help_miss$age[help_miss$female == 1], c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Race group - Female
 varTotalBlackN_female <- sum(help_miss$racegrp[help_miss$female == 1] == "black", na.rm = TRUE)
@@ -106,15 +124,21 @@ varTotalHomelessNPercent_female <- (varTotalHomelessN_female / sum(help_miss$fem
 
 # Calculate and assign variables for the Number of hospitalizations - Female
 varTotalHospitalizationsMean_female <- mean(help_miss$d1[help_miss$female == 1], na.rm = TRUE)
+varTotalHospitalizationsSD_female <- sd(help_miss$d1[help_miss$female == 1], na.rm = TRUE)
 varTotalHospitalizationsMedian_female <- median(help_miss$d1[help_miss$female == 1], na.rm = TRUE)
+varTotalHospitalizationsIQR_female <- quantile(help_miss$d1[help_miss$female == 1], c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Number of times entered a detox programme - Female
 varTotalDetoxTimesMean_female <- mean(help_miss$e2b[help_miss$female == 1], na.rm = TRUE)
+varTotalDetoxTimesSD_female <- sd(help_miss$e2b[help_miss$female == 1], na.rm = TRUE)
 varTotalDetoxTimesMedian_female <- median(help_miss$e2b[help_miss$female == 1], na.rm = TRUE)
+varTotalDetoxTimesIQR_female <- quantile(help_miss$e2b[help_miss$female == 1], c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Average number of drinks consumed per day - Female
 varTotalDrinksPerDayMean_female <- mean(help_miss$i1[help_miss$female == 1], na.rm = TRUE)
+varTotalDrinksPerDaySD_female <- sd(help_miss$i1[help_miss$female == 1], na.rm = TRUE)
 varTotalDrinksPerDayMedian_female <- median(help_miss$i1[help_miss$female == 1], na.rm = TRUE)
+varTotalDrinksPerDayIQR_female <- quantile(help_miss$i1[help_miss$female == 1], c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Alcohol - Female
 varTotalAlcoholN_female <- sum(help_miss$substance[help_miss$female == 1] == "alcohol", na.rm = TRUE)
@@ -134,25 +158,29 @@ varTotalSubstanceAbusePercent_female <- (varTotalSubstanceAbuse_female / sum(hel
 
 # Calculate and assign variables for the Time to first substance abuse post-detox - Female
 varTotalTimeToSubstanceAbuseMean_female <- mean(help_miss$daysanysub[help_miss$female == 1], na.rm = TRUE)
+varTotalTimeToSubstanceAbuseSD_female <- sd(help_miss$daysanysub[help_miss$female == 1], na.rm = TRUE)
 varTotalTimeToSubstanceAbuseMedian_female <- median(help_miss$daysanysub[help_miss$female == 1], na.rm = TRUE)
+varTotalTimeToSubstanceAbuseIQR_female <- quantile(help_miss$daysanysub[help_miss$female == 1], c(0.25, 0.75), na.rm = TRUE)
 
 # Print the calculated variables for the female section
 cat("\nFemale section:\n")
-cat("Age, years - Mean:", varFemaleAgeMean, " Median:", varFemaleAgeMedian, "\n")
+cat("Age, years - Mean:", varFemaleAgeMean, " (SD:", varFemaleAgeSD, ") Median:", varFemaleAgeMedian, " (IQR:", varFemaleAgeIQR[1], "-", varFemaleAgeIQR[2], ")\n")
 cat("Race group - Black N:", varTotalBlackN_female, " (", varTotalBlackNPercent_female, "%), Hispanic N:", varTotalHispanicN_female, " (", varTotalHispanicNPercent_female, "%), Other N:", varTotalOtherN_female, " (", varTotalOtherNPercent_female, "%), White N:", varTotalWhiteN_female, " (", varTotalWhiteNPercent_female, "%)\n")
 cat("Homeless - Homeless N:", varTotalHomelessN_female, " (", varTotalHomelessNPercent_female, "%)\n")
-cat("Number of hospitalizations for medical problems in their lifetime - Mean:", varTotalHospitalizationsMean_female, " Median:", varTotalHospitalizationsMedian_female, "\n")
-cat("Number of times entered a detox programme in the past 6 months - Mean:", varTotalDetoxTimesMean_female, " Median:", varTotalDetoxTimesMedian_female, "\n")
-cat("Average number of drinks consumed per day in the past 30 days - Mean:", varTotalDrinksPerDayMean_female, " Median:", varTotalDrinksPerDayMedian_female, "\n")
+cat("Number of hospitalizations for medical problems in their lifetime - Mean:", varTotalHospitalizationsMean_female, " (SD:", varTotalHospitalizationsSD_female, ") Median:", varTotalHospitalizationsMedian_female, " (IQR:", varTotalHospitalizationsIQR_female[1], "-", varTotalHospitalizationsIQR_female[2], ")\n")
+cat("Number of times entered a detox programme in the past 6 months - Mean:", varTotalDetoxTimesMean_female, " (SD:", varTotalDetoxTimesSD_female, ") Median:", varTotalDetoxTimesMedian_female, " (IQR:", varTotalDetoxTimesIQR_female[1], "-", varTotalDetoxTimesIQR_female[2], ")\n")
+cat("Average number of drinks consumed per day in the past 30 days - Mean:", varTotalDrinksPerDayMean_female, " (SD:", varTotalDrinksPerDaySD_female, ") Median:", varTotalDrinksPerDayMedian_female, " (IQR:", varTotalDrinksPerDayIQR_female[1], "-", varTotalDrinksPerDayIQR_female[2], ")\n")
 cat("Alcohol N:", varTotalAlcoholN_female, " (", varTotalAlcoholNPercent_female, "%)\n")
 cat("Cocaine N:", varTotalCocaineN_female, " (", varTotalCocaineNPercent_female, "%)\n")
 cat("Heroin N:", varTotalHeroinN_female, " (", varTotalHeroinNPercent_female, "%)\n")
 cat("Any substance abuse post-detox - N:", varTotalSubstanceAbuse_female, " (", varTotalSubstanceAbusePercent_female, "%)\n")
-cat("Time to first substance abuse post-detox, days - Mean:", varTotalTimeToSubstanceAbuseMean_female, " Median:", varTotalTimeToSubstanceAbuseMedian_female, "\n")
+cat("Time to first substance abuse post-detox, days - Mean:", varTotalTimeToSubstanceAbuseMean_female, " (SD:", varTotalTimeToSubstanceAbuseSD_female, ") Median:", varTotalTimeToSubstanceAbuseMedian_female, " (IQR:", varTotalTimeToSubstanceAbuseIQR_female[1], "-", varTotalTimeToSubstanceAbuseIQR_female[2], ")\n")
 
 # Calculate and assign variables for the male section
 varMaleAgeMean <- mean(help_miss$age[help_miss$female == 0], na.rm = TRUE)
+varMaleAgeSD <- sd(help_miss$age[help_miss$female == 0], na.rm = TRUE)
 varMaleAgeMedian <- median(help_miss$age[help_miss$female == 0], na.rm = TRUE)
+varMaleAgeIQR <- quantile(help_miss$age[help_miss$female == 0], c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Race group - Male
 varTotalBlackN_male <- sum(help_miss$racegrp[help_miss$female == 0] == "black", na.rm = TRUE)
@@ -171,15 +199,21 @@ varTotalHomelessNPercent_male <- (varTotalHomelessN_male / sum(help_miss$female 
 
 # Calculate and assign variables for the Number of hospitalizations - Male
 varTotalHospitalizationsMean_male <- mean(help_miss$d1[help_miss$female == 0], na.rm = TRUE)
+varTotalHospitalizationsSD_male <- sd(help_miss$d1[help_miss$female == 0], na.rm = TRUE)
 varTotalHospitalizationsMedian_male <- median(help_miss$d1[help_miss$female == 0], na.rm = TRUE)
+varTotalHospitalizationsIQR_male <- quantile(help_miss$d1[help_miss$female == 0], c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Number of times entered a detox programme - Male
 varTotalDetoxTimesMean_male <- mean(help_miss$e2b[help_miss$female == 0], na.rm = TRUE)
+varTotalDetoxTimesSD_male <- sd(help_miss$e2b[help_miss$female == 0], na.rm = TRUE)
 varTotalDetoxTimesMedian_male <- median(help_miss$e2b[help_miss$female == 0], na.rm = TRUE)
+varTotalDetoxTimesIQR_male <- quantile(help_miss$e2b[help_miss$female == 0], c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Average number of drinks consumed per day - Male
 varTotalDrinksPerDayMean_male <- mean(help_miss$i1[help_miss$female == 0], na.rm = TRUE)
+varTotalDrinksPerDaySD_male <- sd(help_miss$i1[help_miss$female == 0], na.rm = TRUE)
 varTotalDrinksPerDayMedian_male <- median(help_miss$i1[help_miss$female == 0], na.rm = TRUE)
+varTotalDrinksPerDayIQR_male <- quantile(help_miss$i1[help_miss$female == 0], c(0.25, 0.75), na.rm = TRUE)
 
 # Calculate and assign variables for the Alcohol - Male
 varTotalAlcoholN_male <- sum(help_miss$substance[help_miss$female == 0] == "alcohol", na.rm = TRUE)
@@ -199,21 +233,76 @@ varTotalSubstanceAbusePercent_male <- (varTotalSubstanceAbuse_male / sum(help_mi
 
 # Calculate and assign variables for the Time to first substance abuse post-detox - Male
 varTotalTimeToSubstanceAbuseMean_male <- mean(help_miss$daysanysub[help_miss$female == 0], na.rm = TRUE)
+varTotalTimeToSubstanceAbuseSD_male <- sd(help_miss$daysanysub[help_miss$female == 0], na.rm = TRUE)
 varTotalTimeToSubstanceAbuseMedian_male <- median(help_miss$daysanysub[help_miss$female == 0], na.rm = TRUE)
+varTotalTimeToSubstanceAbuseIQR_male <- quantile(help_miss$daysanysub[help_miss$female == 0], c(0.25, 0.75), na.rm = TRUE)
 
 # Print the calculated variables for the male section
 cat("\nMale section:\n")
-cat("Age, years - Mean:", varMaleAgeMean, " Median:", varMaleAgeMedian, "\n")
+cat("Age, years - Mean:", varMaleAgeMean, " (SD:", varMaleAgeSD, ") Median:", varMaleAgeMedian, " (IQR:", varMaleAgeIQR[1], "-", varMaleAgeIQR[2], ")\n")
 cat("Race group - Black N:", varTotalBlackN_male, " (", varTotalBlackNPercent_male, "%), Hispanic N:", varTotalHispanicN_male, " (", varTotalHispanicNPercent_male, "%), Other N:", varTotalOtherN_male, " (", varTotalOtherNPercent_male, "%), White N:", varTotalWhiteN_male, " (", varTotalWhiteNPercent_male, "%)\n")
 cat("Homeless - Homeless N:", varTotalHomelessN_male, " (", varTotalHomelessNPercent_male, "%)\n")
-cat("Number of hospitalizations for medical problems in their lifetime - Mean:", varTotalHospitalizationsMean_male, " Median:", varTotalHospitalizationsMedian_male, "\n")
-cat("Number of times entered a detox programme in the past 6 months - Mean:", varTotalDetoxTimesMean_male, " Median:", varTotalDetoxTimesMedian_male, "\n")
-cat("Average number of drinks consumed per day in the past 30 days - Mean:", varTotalDrinksPerDayMean_male, " Median:", varTotalDrinksPerDayMedian_male, "\n")
+cat("Number of hospitalizations for medical problems in their lifetime - Mean:", varTotalHospitalizationsMean_male, " (SD:", varTotalHospitalizationsSD_male, ") Median:", varTotalHospitalizationsMedian_male, " (IQR:", varTotalHospitalizationsIQR_male[1], "-", varTotalHospitalizationsIQR_male[2], ")\n")
+cat("Number of times entered a detox programme in the past 6 months - Mean:", varTotalDetoxTimesMean_male, " (SD:", varTotalDetoxTimesSD_male, ") Median:", varTotalDetoxTimesMedian_male, " (IQR:", varTotalDetoxTimesIQR_male[1], "-", varTotalDetoxTimesIQR_male[2], ")\n")
+cat("Average number of drinks consumed per day in the past 30 days - Mean:", varTotalDrinksPerDayMean_male, " (SD:", varTotalDrinksPerDaySD_male, ") Median:", varTotalDrinksPerDayMedian_male, " (IQR:", varTotalDrinksPerDayIQR_male[1], "-", varTotalDrinksPerDayIQR_male[2], ")\n")
 cat("Alcohol N:", varTotalAlcoholN_male, " (", varTotalAlcoholNPercent_male, "%)\n")
 cat("Cocaine N:", varTotalCocaineN_male, " (", varTotalCocaineNPercent_male, "%)\n")
 cat("Heroin N:", varTotalHeroinN_male, " (", varTotalHeroinNPercent_male, "%)\n")
 cat("Any substance abuse post-detox - N:", varTotalSubstanceAbuse_male, " (", varTotalSubstanceAbusePercent_male, "%)\n")
-cat("Time to first substance abuse post-detox, days - Mean:", varTotalTimeToSubstanceAbuseMean_male, " Median:", varTotalTimeToSubstanceAbuseMedian_male, "\n")
+cat("Time to first substance abuse post-detox, days - Mean:", varTotalTimeToSubstanceAbuseMean_male, " (SD:", varTotalTimeToSubstanceAbuseSD_male, ") Median:", varTotalTimeToSubstanceAbuseMedian_male, " (IQR:", varTotalTimeToSubstanceAbuseIQR_male[1], "-", varTotalTimeToSubstanceAbuseIQR_male[2], ")\n")
+
+# Create data frame for the calculated variables
+results <- data.frame(
+  section = c("Total", "Female", "Male"),
+  count = c(varTotalN, varFemaleN, varMaleN),
+  percentage = c(varTotalNPercent, varFemaleNPercent, varMaleNPercent),
+  age_mean = c(varTotalAgeMean, varFemaleAgeMean, varMaleAgeMean),
+  age_sd = c(varTotalAgeSD, varFemaleAgeSD, varMaleAgeSD),
+  age_median = c(varTotalAgeMedian, varFemaleAgeMedian, varMaleAgeMedian),
+  age_iqr_low = c(varTotalAgeIQR[1], varFemaleAgeIQR[1], varMaleAgeIQR[1]),
+  age_iqr_high = c(varTotalAgeIQR[2], varFemaleAgeIQR[2], varMaleAgeIQR[2]),
+  race_black_n = c(varTotalBlackN, varTotalBlackN_female, varTotalBlackN_male),
+  race_black_percent = c(varTotalBlackNPercent, varTotalBlackNPercent_female, varTotalBlackNPercent_male),
+  race_hispanic_n = c(varTotalHispanicN, varTotalHispanicN_female, varTotalHispanicN_male),
+  race_hispanic_percent = c(varTotalHispanicNPercent, varTotalHispanicNPercent_female, varTotalHispanicNPercent_male),
+  race_other_n = c(varTotalOtherN, varTotalOtherN_female, varTotalOtherN_male),
+  race_other_percent = c(varTotalOtherNPercent, varTotalOtherNPercent_female, varTotalOtherNPercent_male),
+  race_white_n = c(varTotalWhiteN, varTotalWhiteN_female, varTotalWhiteN_male),
+  race_white_percent = c(varTotalWhiteNPercent, varTotalWhiteNPercent_female, varTotalWhiteNPercent_male),
+  homeless_n = c(varTotalHomelessN, varTotalHomelessN_female, varTotalHomelessN_male),
+  homeless_percent = c(varTotalHomelessNPercent, varTotalHomelessNPercent_female, varTotalHomelessNPercent_male),
+  hospitalizations_mean = c(varTotalHospitalizationsMean, varTotalHospitalizationsMean_female, varTotalHospitalizationsMean_male),
+  hospitalizations_sd = c(varTotalHospitalizationsSD, varTotalHospitalizationsSD_female, varTotalHospitalizationsSD_male),
+  hospitalizations_median = c(varTotalHospitalizationsMedian, varTotalHospitalizationsMedian_female, varTotalHospitalizationsMedian_male),
+  hospitalizations_iqr_low = c(varTotalHospitalizationsIQR[1], varTotalHospitalizationsIQR_female[1], varTotalHospitalizationsIQR_male[1]),
+  hospitalizations_iqr_high = c(varTotalHospitalizationsIQR[2], varTotalHospitalizationsIQR_female[2], varTotalHospitalizationsIQR_male[2]),
+  detox_mean = c(varTotalDetoxTimesMean, varTotalDetoxTimesMean_female, varTotalDetoxTimesMean_male),
+  detox_sd = c(varTotalDetoxTimesSD, varTotalDetoxTimesSD_female, varTotalDetoxTimesSD_male),
+  detox_median = c(varTotalDetoxTimesMedian, varTotalDetoxTimesMedian_female, varTotalDetoxTimesMedian_male),
+  detox_iqr_low = c(varTotalDetoxTimesIQR[1], varTotalDetoxTimesIQR_female[1], varTotalDetoxTimesIQR_male[1]),
+  detox_iqr_high = c(varTotalDetoxTimesIQR[2], varTotalDetoxTimesIQR_female[2], varTotalDetoxTimesIQR_male[2]),
+  drinks_mean = c(varTotalDrinksPerDayMean, varTotalDrinksPerDayMean_female, varTotalDrinksPerDayMean_male),
+  drinks_sd = c(varTotalDrinksPerDaySD, varTotalDrinksPerDaySD_female, varTotalDrinksPerDaySD_male),
+  drinks_median = c(varTotalDrinksPerDayMedian, varTotalDrinksPerDayMedian_female, varTotalDrinksPerDayMedian_male),
+  drinks_iqr_low = c(varTotalDrinksPerDayIQR[1], varTotalDrinksPerDayIQR_female[1], varTotalDrinksPerDayIQR_male[1]),
+  drinks_iqr_high = c(varTotalDrinksPerDayIQR[2], varTotalDrinksPerDayIQR_female[2], varTotalDrinksPerDayIQR_male[2]),
+  alcohol_n = c(varTotalAlcoholN, varTotalAlcoholN_female, varTotalAlcoholN_male),
+  alcohol_percent = c(varTotalAlcoholNPercent, varTotalAlcoholNPercent_female, varTotalAlcoholNPercent_male),
+  cocaine_n = c(varTotalCocaineN, varTotalCocaineN_female, varTotalCocaineN_male),
+  cocaine_percent = c(varTotalCocaineNPercent, varTotalCocaineNPercent_female, varTotalCocaineNPercent_male),
+  heroin_n = c(varTotalHeroinN, varTotalHeroinN_female, varTotalHeroinN_male),
+  heroin_percent = c(varTotalHeroinNPercent, varTotalHeroinNPercent_female, varTotalHeroinNPercent_male),
+  anysub_n = c(varTotalSubstanceAbuse, varTotalSubstanceAbuse_female, varTotalSubstanceAbuse_male),
+  anysub_percent = c(varTotalSubstanceAbusePercent, varTotalSubstanceAbusePercent_female, varTotalSubstanceAbusePercent_male),
+  time_to_anysub_mean = c(varTotalTimeToSubstanceAbuseMean, varTotalTimeToSubstanceAbuseMean_female, varTotalTimeToSubstanceAbuseMean_male),
+  time_to_anysub_sd = c(varTotalTimeToSubstanceAbuseSD, varTotalTimeToSubstanceAbuseSD_female, varTotalTimeToSubstanceAbuseSD_male),
+  time_to_anysub_median = c(varTotalTimeToSubstanceAbuseMedian, varTotalTimeToSubstanceAbuseMedian_female, varTotalTimeToSubstanceAbuseMedian_male),
+  time_to_anysub_iqr_low = c(varTotalTimeToSubstanceAbuseIQR[1], varTotalTimeToSubstanceAbuseIQR_female[1], varTotalTimeToSubstanceAbuseIQR_male[1]),
+  time_to_anysub_iqr_high = c(varTotalTimeToSubstanceAbuseIQR[2], varTotalTimeToSubstanceAbuseIQR_female[2], varTotalTimeToSubstanceAbuseIQR_male[2])
+)
+
+# Print the results data frame
+print(results)
 
 # Create the table as a data frame
 table_df <- data.frame(
@@ -425,3 +514,42 @@ ggsave("histogram.png", plot = histogram_plot, width = 6, height = 4)
 
 # Save the age by sex boxplot as a picture file
 ggsave("age_by_sex_boxplot.png", plot = p, width = 6, height = 4)
+
+# Given data
+mean_female <- 36.07
+sd_female <- 7.71
+n_female <- 111
+
+mean_male <- 35.65
+sd_male <- 7.84
+n_male <- 359
+
+# Calculate the standard error of the difference in means
+se_diff <- sqrt((sd_female^2 / n_female) + (sd_male^2 / n_male))
+
+# Calculate the t-statistic
+t_stat <- (mean_female - mean_male) / se_diff
+
+# Calculate the degrees of freedom
+df <- n_female + n_male - 2
+
+# Calculate the p-value for a two-tailed test
+p_value <- 2 * (1 - pt(abs(t_stat), df))
+
+# Set the significance level
+alpha <- 0.05
+
+# Check if the p-value is less than alpha
+if (p_value < alpha) {
+  cat("The p-value is less than the significance level (alpha).")
+  cat("Reject the null hypothesis (H0).")
+  cat("There is sufficient evidence to conclude that the mean age of females is not equal to the mean age of males.")
+} else {
+  cat("The p-value is greater than or equal to alpha.")
+  cat("Fail to reject the null hypothesis (H0).")
+  cat("There is not enough evidence to conclude that the mean age of females is different from the mean age of males.")
+}
+
+# Output the p-value
+p_value
+
