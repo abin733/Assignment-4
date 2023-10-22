@@ -1,0 +1,48 @@
+Median for Group A (<= medianAllBili): 0.8 
+Median for Group B (> medianAllBili): 3.5 
+Table for Treatment Category:
+
+D-penicillamine         Placebo 
+            158             154 
+
+Table for Outcome Category:
+
+  Censored Transplant       Dead 
+       232         25        161 
+Total number of people who died: 161 
+Percentage of those who died in the placebo group: 37.26708 %
+Percentage of the treatment group (D-penicillamine) that received a transplant: 6.329114 %
+Risk Ratio of having a transplant or dying in the treatment group compared to the placebo group: 0.92 
+Odds Ratio of having a transplant or dying in the treatment group compared to the placebo group: 0.8983529 
+The stage with the most people is: 3 
+stage_summary
+  Stage x.Mean_Age  x.SD_Age
+1     1  46.841107  9.545687
+2     2  49.465941  9.624315
+3     3  48.962540 10.118584
+4     4  53.765572 10.823320
+summary(anova_result)
+                Df Sum Sq Mean Sq F value  Pr(>F)    
+stage_category   3   2273   757.6   7.227 9.8e-05 ***
+Residuals      408  42771   104.8                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+6 observations deleted due to missingness
+posthoc_test
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = age ~ stage_category, data = data)
+
+$stage_category
+          diff        lwr       upr     p adj
+2-1  2.6248337 -3.7627804  9.012448 0.7140310
+3-1  2.1214331 -4.0201996  8.263066 0.8095151
+4-1  6.9244647  0.7549062 13.094023 0.0207410
+3-2 -0.5034005 -3.9794962  2.972695 0.9821972
+4-2  4.2996310  0.7744303  7.824832 0.0095698
+4-3  4.8030315  1.7460592  7.860004 0.0003516
+
+summary(posthoc_test)
+               Length Class  Mode   
+stage_category 24     -none- numeric

@@ -3,7 +3,6 @@ library(readr)
 library(ggplot2)
 library(psych)
 
-
 # Load the dataset
 help_miss <- read_csv("HELPmiss.csv")
 
@@ -417,3 +416,12 @@ substance_of_abuse <- help_miss$substance[outlier_row]
 # Print the result
 cat("Primary Substance of Abuse for the person who drank the highest number of drinks:",
     substance_of_abuse, "\n")
+
+# Save the boxplot as a picture file
+ggsave("boxplot.png", plot = boxplot_plot, width = 6, height = 4)
+
+# Save the histogram as a picture file
+ggsave("histogram.png", plot = histogram_plot, width = 6, height = 4)
+
+# Save the age by sex boxplot as a picture file
+ggsave("age_by_sex_boxplot.png", plot = p, width = 6, height = 4)
